@@ -1,0 +1,293 @@
+PRETTYME
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>PrettyMe</title>
+  <style>
+    * { box-sizing: border-box; }
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: #ffe6f0;
+      margin: 0; padding: 20px;
+      color: #4a004a;
+    }
+    h1 {
+      color: #d6336c;
+      font-size: 2.5rem;
+      text-shadow: 0 0 10px #ff77b1;
+      text-align: center;
+      margin-bottom: 10px;
+    }
+    #motivation {
+      font-style: italic;
+      color: #b43b6c;
+      margin-bottom: 30px;
+      font-size: 1.1rem;
+      text-shadow: 0 0 5px #ffcce0;
+      text-align: center;
+    }
+    .container {
+      display: flex;
+      flex-direction: row;
+      gap: 30px;
+      align-items: flex-start;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+    #kategori-container {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 20px;
+      flex: 1;
+    }
+    .kategori {
+      background: linear-gradient(145deg, #ff99cc, #ffb3d9);
+      padding: 15px;
+      border-radius: 12px;
+      box-shadow: 0 0 10px #ffb6d9;
+      cursor: pointer;
+      font-weight: 700;
+      font-size: 1.1rem;
+      text-align: center;
+      transition: all 0.3s ease;
+      user-select: none;
+    }
+    .kategori:hover {
+      transform: scale(1.07);
+      box-shadow: 0 0 15px #ff69b4;
+    }
+    #content {
+      background: #fff;
+      border-radius: 15px;
+      padding: 25px;
+      box-shadow: 0 0 15px #ffb6d9;
+      flex: 2;
+      min-height: 300px;
+      display: none;
+      overflow-y: auto;
+      max-height: 80vh;
+    }
+    #content h2 {
+      color: #d6336c;
+      text-shadow: 0 0 5px #ff77b1;
+      margin-top: 0;
+    }
+    #content h3 {
+      color: #b03a6b;
+      margin-bottom: 6px;
+    }
+    #content p, #content ul {
+      line-height: 1.5;
+      font-size: 1rem;
+      margin-bottom: 15px;
+    }
+    #content ul {
+      padding-left: 20px;
+    }
+    #content img {
+      width: 100%;
+      border-radius: 12px;
+      margin-bottom: 15px;
+      box-shadow: 0 0 10px #ffb6d9;
+    }
+
+    @media (max-width: 768px) {
+      .container {
+        flex-direction: column;
+      }
+      #kategori-container {
+        grid-template-columns: 1fr;
+      }
+      #content {
+        max-height: none;
+        margin-top: 20px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <h1>PrettyMe'ye Hoşgeldin 💖</h1>
+  <div id="motivation"></div>
+
+  <div class="container">
+    <div id="kategori-container">
+      <div class="kategori" data-key="yuzegzersiz">Yüz Egzersizleri</div>
+      <div class="kategori" data-key="kilo">Kilo</div>
+      <div class="kategori" data-key="ciltbakim">Cilt Bakımı</div>
+      <div class="kategori" data-key="elayak">El & Ayak Bakımı</div>
+      <div class="kategori" data-key="sac">Saç Bakımı</div>
+      <div class="kategori" data-key="makyaj">Makyaj</div>
+      <div class="kategori" data-key="akne">Akne</div>
+      <div class="kategori" data-key="komedon">Komedon</div>
+    </div>
+
+    <div id="content"></div>
+  </div>
+
+  <script>
+    // Motivasyon sözleri rastgele göster
+    const motivationList = [
+      "Kendini sev, ışılda ✨",
+      "Sen her halinle güzelsin 💗",
+      "Güzellik kendine iyi bakmakla başlar 🌸",
+      "Bugün kendin için bir şey yap 💅",
+      "Işıltını dışa yansıt! 💫"
+    ];
+    document.getElementById("motivation").textContent =
+      motivationList[Math.floor(Math.random() * motivationList.length)];
+
+    // Kategori içerikleri ve görselleri
+    const data = {
+      yuzegzersiz: {
+        title: "Yüz Egzersizleri",
+        content: `
+          <h2>Yüz Egzersizleri</h2>
+          <img src="https://herbachoices.com/cdn/shop/articles/face-yoga-six-exercises-to-try-403952.jpg" alt="Yüz Egzersizi" />
+          <p>Yüz kaslarını çalıştırarak daha genç ve sıkı bir görünüm elde edebilirsin.</p>
+          <ul>
+            <li><strong>Cheek Lifter:</strong> Ağzını "O" yap, elmacık altlarını yukarı kaldır. 10 tekrar.</li>
+            <li><strong>Jaw Firmer:</strong> Çeneyi ileri doğru çıkar, "Ahh" sesiyle tut. 5 kez tekrar et.</li>
+            <li><strong>Puffer Fish:</strong> Yanaklarını şişir ve hava gezdir. 20 saniye tut.</li>
+          </ul>
+        `
+      },
+      kilo: {
+        title: "Kilo Kontrolü",
+        content: `
+          <h2>Kilo Kontrolü</h2>
+          <img src="https://www.esraaktan.com/upload/kiloalmadiyeti-1140x700.jpg" alt="Kilo Yönetimi" />
+          <h3>Kilo Alma</h3>
+          <ul>
+            <li>Günde 3 ana + 2-3 ara öğün tüket.</li>
+            <li>Smoothie ve kuru yemişlerle kalori artır.</li>
+            <li>Yeterli protein: yumurta, süt, yoğurt, tavuk.</li>
+          </ul>
+          <h3>Kilo Verme</h3>
+          <ul>
+            <li>Basit karbonhidratları azalt, lifli beslen.</li>
+            <li>Yürüyüş ve egzersiz ile destekle.</li>
+            <li>Bol su iç ve şekerli içeceklerden kaçın.</li>
+          </ul>
+        `
+      },
+      ciltbakim: {
+        title: "Cilt Bakımı",
+        content: `
+          <h2>Cilt Bakımı</h2>
+          <img src="https://cdn.myikas.com/images/9a36f029-de91-4e7d-bb48-03b792d9c12e/72e9ce4c-fd88-4e37-9581-0def3ca07ff5/image_1080.jpg" alt="Cilt Bakımı" />
+          <h3>Sabah Rutini</h3>
+          <ul>
+            <li>Yüz temizleyici</li>
+            <li>Tonik</li>
+            <li>Serum (C vitamini veya hyaluronik asit)</li>
+            <li>Nemlendirici</li>
+            <li>Güneş kremi</li>
+          </ul>
+          <h3>Akşam Rutini</h3>
+          <ul>
+            <li>Makyaj temizleme (micellar su/balm)</li>
+            <li>Temizleme jeli</li>
+            <li>Serum + gece kremi</li>
+          </ul>
+        `
+      },
+      elayak: {
+        title: "El & Ayak Bakımı",
+        content: `
+          <h2>El ve Ayak Bakımı</h2>
+          <img src="https://kirpiks.com/wp-content/uploads/2024/05/el-ayak-bakimi.jpg" alt="El Ayak Bakımı" />
+          <ul>
+            <li>Haftada 1 peeling uygulayın</li>
+            <li>Nemlendirici krem sabah-akşam sürün</li>
+            <li>Topuk çatlaklarına doğal yağlar kullanın</li>
+            <li>Manikür ve tırnak temizliğini ihmal etmeyin</li>
+          </ul>
+        `
+      },
+      sac: {
+        title: "Saç Bakımı",
+        content: `
+          <h2>Saç Bakımı</h2>
+          <img src="https://www.tirassepetim.com/Data/img/blogPost/9/tr_img_1_129.jpg" alt="Saç Bakımı" />
+          <ul>
+            <li>Saç tipine uygun şampuan seç</li>
+            <li>Haftalık maske uygula</li>
+            <li>Isı öncesi koruyucu kullan</li>
+            <li>Argan yağı ile saç uçlarını besle</li>
+          </ul>
+        `
+      },
+      makyaj: {
+        title: "Makyaj Tavsiyeleri",
+        content: `
+          <h2>Makyaj</h2>
+          <img src="https://cf.kizlarsoruyor.com/a183596/299f0792-c24a-475a-b69e-dd76255259cc.jpg" alt="Makyaj" />
+          <ul>
+            <li>Makyaj süngerini düzenli temizle</li>
+            <li>Primer kullanmak makyajın kalıcılığını artırır</li>
+            <li>Fondöten tonunu cilt tipine göre seç</li>
+            <li>Makyajdaki topaklanmalar için cilt temizliğine önem ver</li>
+          </ul>
+          <h3>Topaklanma neden olur?</h3>
+          <p>Genellikle ciltteki fazla yağ veya nemlendirici kalıntıları makyajın topaklanmasına sebep olur. Temiz ve kuru cilde uygulama yapmak en iyisidir.</p>
+        `
+      },
+      akne: {
+        title: "Akne",
+        content: `
+          <h2>Akne Hakkında</h2>
+          <img src="https://www.mph.com.tr/Content/Images/uploads/content/sivilce-akne-neden-olusur.jpg" alt="Akne" />
+          <p>Akne, ciltteki yağ bezlerinin tıkanması sonucu oluşan bir cilt sorunudur. Doğru bakım ve ürünlerle kontrol altına alınabilir.</p>
+          <h3>Öneriler</h3>
+          <ul>
+            <li>Günde 2 kez nazikçe yüzünü yıka</li>
+            <li>Yağsız ve komedojenik olmayan ürünler kullan</li>
+            <li>Dokunmaktan kaçın</li>
+            <li>Stresten uzak dur, sağlıklı beslen</li>
+          </ul>
+          <h3>Önerilen Ürünler</h3>
+          <ul>
+            <li>La Roche-Posay Effaclar Duo+</li>
+            <li>The Ordinary Niacinamide 10% + Zinc</li>
+            <li>Cerave Foaming Cleanser</li>
+          </ul>
+        `
+      },
+      komedon: {
+        title: "Komedon (Siyah/Beyaz Nokta)",
+        content: `
+          <h2>Komedonlar</h2>
+          <img src="https://cdn.myikas.com/images/4605bc42-d070-4d3f-b5b6-9117e54ab9ae/244736c8-99f0-4cfc-858e-ea14b4798664/image_1080.jpg" alt="Komedon" />
+          <ul>
+            <li>Gözenek tıkanmasıyla oluşur (özellikle T bölgesi).</li>
+            <li>Haftalık kil maskesi ve BHA içeren tonikler kullan.</li>
+            <li>Gözenekleri sıkmadan temiz tutmak önemlidir.</li>
+          </ul>
+          <h3>Önerilen Ürünler</h3>
+          <ul>
+            <li>Cosrx BHA Blackhead Power Liquid</li>
+            <li>Innisfree Super Volcanic Clay Mask</li>
+          </ul>
+        `
+      }
+    };
+
+    const kategoriEls = document.querySelectorAll(".kategori");
+    const contentEl = document.getElementById("content");
+
+    kategoriEls.forEach(el => {
+      el.addEventListener("click", () => {
+        const key = el.getAttribute("data-key");
+        const info = data[key];
+        if (info) {
+          contentEl.style.display = "block";
+          contentEl.innerHTML = info.content;
+          window.scrollTo({ top: 0, behavior: "smooth" });
+        }
+      });
+    });
+  </script>
+</body>
+</html>
